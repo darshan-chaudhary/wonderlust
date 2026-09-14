@@ -1,0 +1,249 @@
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+            <a href="/" class="footer-logo">
+                <span>W</span> Wonderlust
+            </a>
+
+            <p>
+                Discover beautiful places, unique stays,
+                and unforgettable experiences.
+            </p>
+        </div>
+
+
+        <!-- Explore -->
+        <div class="footer-column">
+            <h3>Explore</h3>
+
+            <a href="/">Home</a>
+            <a href="/listings">Listings</a>
+            <a href="/book">Bookings</a>
+        </div>
+
+
+        <!-- Company -->
+        <div class="footer-column">
+            <h3>Company</h3>
+
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact</a>
+            <a href="/listing/new">List your place</a>
+        </div>
+
+
+        <!-- Support -->
+        <div class="footer-column">
+            <h3>Support</h3>
+
+            <a href="#">Help Center</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+        </div>
+
+    </div>
+
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Wonderlust. All rights reserved.
+        </p>
+
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<style>
+
+    /* FOOTER */
+
+    .footer {
+        margin-top: 80px;
+        background: #111;
+        color: white;
+    }
+
+
+    .footer-container {
+        max-width: 1200px;
+        margin: auto;
+
+        padding: 60px 30px;
+
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+
+        gap: 50px;
+    }
+
+
+    /* BRAND */
+
+    .footer-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        text-decoration: none;
+        color: white;
+
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+
+    .footer-logo span {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #ff385c;
+        border-radius: 12px;
+
+        font-size: 20px;
+    }
+
+
+    .footer-brand p {
+        max-width: 320px;
+
+        color: #aaa;
+        line-height: 1.7;
+
+        margin-top: 20px;
+    }
+
+
+    /* COLUMNS */
+
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+
+    .footer-column h3 {
+        margin: 0 0 10px;
+
+        font-size: 16px;
+        color: white;
+    }
+
+
+    .footer-column a {
+        text-decoration: none;
+
+        color: #aaa;
+
+        font-size: 14px;
+
+        transition: 0.2s;
+    }
+
+
+    .footer-column a:hover {
+        color: #ff385c;
+        transform: translateX(3px);
+    }
+
+
+    /* BOTTOM */
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: auto;
+
+        padding: 20px 30px;
+
+        border-top: 1px solid #292929;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    .footer-bottom p {
+        margin: 0;
+
+        color: #888;
+
+        font-size: 13px;
+    }
+
+
+    .social-links {
+        display: flex;
+        gap: 20px;
+    }
+
+
+    .social-links a {
+        color: #888;
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        transition: 0.2s;
+    }
+
+
+    .social-links a:hover {
+        color: white;
+    }
+
+
+    /* TABLET */
+
+    @media (max-width: 800px) {
+
+        .footer-container {
+            grid-template-columns: 1fr 1fr;
+        }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 550px) {
+
+        .footer-container {
+            grid-template-columns: 1fr;
+
+            padding: 45px 25px;
+
+            gap: 35px;
+        }
+
+
+        .footer-bottom {
+            padding: 20px 25px;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            text-align: center;
+        }
+
+    }
+
+</style>

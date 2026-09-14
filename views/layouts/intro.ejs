@@ -1,0 +1,236 @@
+<section class="intro">
+
+    <div class="intro-content">
+
+        <div class="intro-text">
+
+            <span class="intro-tag">
+                ✦ ABOUT WONDERLUST
+            </span>
+
+            <h2>
+                Your journey begins
+                <span>here.</span>
+            </h2>
+
+            <p>
+                Wonderlust makes it simple to discover beautiful places,
+                comfortable stays, and unique experiences around the world.
+                Whether you're planning a weekend escape or a long adventure,
+                find a place that feels like home.
+            </p>
+
+            <div class="intro-stats">
+
+                <div>
+                    <h3>500+</h3>
+                    <p>Unique Stays</p>
+                </div>
+
+                <div>
+                    <h3>50+</h3>
+                    <p>Destinations</p>
+                </div>
+
+                <div>
+                    <h3>10K+</h3>
+                    <p>Happy Guests</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="intro-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
+                alt="Beautiful travel destination"
+            >
+
+            <div class="image-card">
+                <strong>Find your next escape</strong>
+                <span>Make memories that last forever.</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+    .intro {
+        padding: 90px 30px;
+        background: #fff;
+    }
+
+
+    .intro-content {
+        max-width: 1150px;
+        margin: auto;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        align-items: center;
+        gap: 80px;
+    }
+
+
+    /* TEXT */
+
+    .intro-tag {
+        color: #ff385c;
+
+        font-size: 13px;
+        font-weight: 700;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    .intro-text h2 {
+        font-size: 46px;
+        line-height: 1.1;
+
+        margin: 18px 0;
+    }
+
+
+    .intro-text h2 span {
+        color: #ff385c;
+    }
+
+
+    .intro-text > p {
+        color: #666;
+
+        font-size: 17px;
+        line-height: 1.8;
+
+        max-width: 550px;
+    }
+
+
+    /* STATS */
+
+    .intro-stats {
+        display: flex;
+        gap: 45px;
+
+        margin-top: 35px;
+    }
+
+
+    .intro-stats h3 {
+        margin: 0;
+
+        font-size: 25px;
+    }
+
+
+    .intro-stats p {
+        margin: 5px 0;
+
+        color: #777;
+
+        font-size: 13px;
+    }
+
+
+    /* IMAGE */
+
+    .intro-image {
+        position: relative;
+    }
+
+
+    .intro-image img {
+        width: 100%;
+        height: 420px;
+
+        object-fit: cover;
+
+        border-radius: 25px;
+    }
+
+
+    /* FLOATING CARD */
+
+    .image-card {
+        position: absolute;
+
+        bottom: 25px;
+        left: -25px;
+
+        background: white;
+
+        padding: 18px 22px;
+
+        border-radius: 14px;
+
+        box-shadow: 0 10px 30px rgba(0,0,0,.15);
+
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+
+    .image-card strong {
+        font-size: 15px;
+    }
+
+
+    .image-card span {
+        color: #777;
+
+        font-size: 12px;
+    }
+
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+
+        .intro {
+            padding: 60px 20px;
+        }
+
+        .intro-content {
+            grid-template-columns: 1fr;
+            gap: 45px;
+        }
+
+        .intro-text h2 {
+            font-size: 38px;
+        }
+
+        .intro-image img {
+            height: 350px;
+        }
+
+        .image-card {
+            left: 15px;
+        }
+
+    }
+
+
+    @media (max-width: 500px) {
+
+        .intro-stats {
+            gap: 20px;
+        }
+
+        .intro-stats h3 {
+            font-size: 21px;
+        }
+
+    }
+
+</style>

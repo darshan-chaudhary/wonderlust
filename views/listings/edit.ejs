@@ -1,0 +1,150 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Listing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 7px;
+            background: black;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Edit Listing</h1>
+
+        <form action="/listing/<%= obj._id %>?_method=PUT" method="POST">
+
+            <div class="form-group">
+                <label>Hotel Name</label>
+                <input
+                    type="text"
+                    name="title"
+                    value="<%= obj.title %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea
+                    name="description"
+                    required
+                ><%= obj.description %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Image URL</label>
+                <input
+                    type="text"
+                    name="image"
+                    value="<%= obj.image.url %>"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Price</label>
+                <input
+                    type="number"
+                    name="price"
+                    value="<%= obj.price %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Location</label>
+                <input
+                    type="text"
+                    name="location"
+                    value="<%= obj.location %>"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Country</label>
+                <input
+                    type="text"
+                    name="country"
+                    value="<%= obj.country %>"
+                    required
+                >
+            </div>
+
+            <button type="submit">UPDATE LISTING</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
+```
