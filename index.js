@@ -67,6 +67,9 @@ app.get("/delete/:id",async(req,res)=>{
     await listing.findByIdAndDelete(id);
     res.redirect("/listing");
 })
+app.use((req,res)=>{
+    res.status(404).send("404 - Page Not Found");
+})
 app.listen(port,()=>{
     console.log("app is listening");
 });
