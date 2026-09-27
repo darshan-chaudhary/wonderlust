@@ -9,6 +9,8 @@ const mongourl="mongodb://127.0.0.1:27017/wonderlust";
 const methodOverride = require("method-override");
 const ejsmate=require("ejs-mate");
 const {reviewSchema}=require("./public/joiconstrains.js");
+const{listingSchema}=require("./public/listingschemaconstranins.js")
+
 
 app.use(methodOverride("_method"));
 app.set("view engine","ejs");
@@ -50,6 +52,11 @@ app.get("/listing/:id",async(req,res)=>{
 
 app.post("/listing",async(req,res)=>{
     console.log("✅");
+    const {error}=listingSchema.validate(req.body);
+    if(error){
+       console.log(error.details);
+       return res.send("somthing worng");
+    }
     let obj=req.body;
     await listing.create(obj);
     res.redirect("/listing");
