@@ -211,7 +211,7 @@
 
                              <% x.reviews.forEach(review => { %>
 
-                           <div class="col-12 col-sm-6 col-md-3">
+                        <div class="col-12 col-sm-6 col-md-3">
 
                                <div class="card h-100 p-3 shadow-sm">
 
@@ -225,9 +225,13 @@
                                    <p class="mb-0">
                                        <%= review.comment %>
                                      </p>
+                                     <hr>
+                                        
+                                      <a href="/listing/<%=review._id%>/delete" class="text-center"><button>delete</button></a>
 
                                 </div>
 
+                               
                         </div>
 
                                    <% }) %>

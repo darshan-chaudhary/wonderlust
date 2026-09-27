@@ -92,6 +92,17 @@ app.post("/listing/:id/reviews",async(req,res)=>{
     await find.save();
     res.send("ok");
 })
+
+app.get("/listing/:id/delete",async(req,res)=>{
+    const revid=req.params.id;
+    await review.findByIdAndDelete(revid);
+    await listing.updateMany(
+        {review :revid},
+        {$pull:{reviews:revid}}
+    );
+    res.redirect("/listing");
+
+})
 app.use((req,res)=>{
     res.status(404).send("404 - Page Not Found");
 })
