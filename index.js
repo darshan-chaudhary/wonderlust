@@ -8,6 +8,7 @@ const port=8080;
 const mongourl="mongodb://127.0.0.1:27017/wonderlust";
 const methodOverride = require("method-override");
 const ejsmate=require("ejs-mate");
+const {reviewSchema}=require("./public/joiconstrains.js");
 
 app.use(methodOverride("_method"));
 app.set("view engine","ejs");
@@ -72,13 +73,17 @@ app.get("/delete/:id",async(req,res)=>{
 
 
 app.post("/listing/:id/reviews",async(req,res)=>{
-    const find=await listing.findById(req.params.id);
+    const {error}=reviewSchema.validate(req.body);
+    if(error){
+        console.log(error.details);
+        return res.send(error.details[0].message);
+    }
+     const find=await listing.findById(req.params.id);
     let newrev=new review(req.body);
-    let  x=await find.reviews.push(newrev._id);
+    let  x= find.reviews.push(newrev._id);
     await newrev.save();
     await find.save();
     res.send("ok");
-    console.log(res);
 })
 app.use((req,res)=>{
     res.status(404).send("404 - Page Not Found");

@@ -165,7 +165,7 @@
 
             <div class="p-4">
                 <h4>leave review</h4>
-                  <form action="/listing/<%=x._id%>/reviews" method="post">
+                  <form action="/listing/<%=x._id%>/reviews" method="post" novalidate class="needs-validation">
                   
                       <label for="rating" class="form-label">Rate</label>
                   
@@ -186,6 +186,7 @@
                           class="form-control"
                           cols="30"
                           rows="5"
+                          required
                       ></textarea>
                   
                         <button class="btn btn-primary d-block mx-auto mt-3">
