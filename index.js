@@ -90,7 +90,8 @@ app.post("/listing/:id/reviews",async(req,res)=>{
     let  x= find.reviews.push(newrev._id);
     await newrev.save();
     await find.save();
-    res.send("ok");
+    let id=req.params.id;
+    res.redirect(`/listing/${id}`);
 })
 
 app.get("/listing/:pageid/delete/:reviewid",async(req,res)=>{
