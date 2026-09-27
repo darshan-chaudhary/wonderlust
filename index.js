@@ -93,14 +93,14 @@ app.post("/listing/:id/reviews",async(req,res)=>{
     res.send("ok");
 })
 
-app.get("/listing/:id/delete",async(req,res)=>{
-    const revid=req.params.id;
-    await review.findByIdAndDelete(revid);
-    await listing.updateMany(
-        {review :revid},
-        {$pull:{reviews:revid}}
+app.get("/listing/:pageid/delete/:reviewid",async(req,res)=>{
+    const {pageid,reviewid}=req.params;
+    await review.findByIdAndDelete(reviewid);
+    await listing.updateOne(
+        {_id:pageid},
+        {$pull:{reviews:reviewid}}
     );
-    res.redirect("/listing");
+    res.redirect(`/listing/${pageid}`);
 
 })
 app.use((req,res)=>{
