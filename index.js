@@ -74,6 +74,12 @@ app.put("/listing/:id",async(req,res)=>{
 })
 app.get("/delete/:id",async(req,res)=>{
     let id=req.params.id;
+    let obj =await listing.findById(id);
+    if(obj.reviews.length){
+        await review.deleteMany({
+            _id:{$in : obj.reviews}
+        })
+    }
     await listing.findByIdAndDelete(id);
     res.redirect("/listing");
 })
