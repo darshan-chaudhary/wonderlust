@@ -35,10 +35,12 @@ const listingSchema = new schema({
 });
 
   listingSchema.post("findOneAndDelete",async (place)=>{
-     
-      await  review.deleteMany({
+      if(place){
+         await  review.deleteMany({
           _id:{$in:place.reviews}
        })
+      }
+     
   });
 
 const listing = mongoose.model("listing", listingSchema);
