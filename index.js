@@ -11,8 +11,14 @@ const ejsmate=require("ejs-mate");
 const {reviewSchema}=require("./public/utils/joiconstrains.js");
 const{listingSchema}=require("./public/utils/listingschemaconstranins.js")
 const listingroutes=require("./routes/listing.js");
+const session=require("express-session");
 
-
+     const sessionOption={
+         secret:"myhiddenstring",
+         resave:false,
+        saveUninitialized:true
+     }
+     
 app.use(methodOverride("_method"));
 app.set("view engine","ejs");
 app.engine("ejs",ejsmate);
@@ -33,6 +39,7 @@ main().then((res)=>{
     console.log("somthing wrong in mongo connection");
 })
 
+app.use(session(sessionOption));
 
 app.use((req,res,next)=>{
     
