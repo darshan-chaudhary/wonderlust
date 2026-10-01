@@ -59,7 +59,10 @@ route.get("/delete/:id",async(req,res)=>{
     //         _id:{$in : obj.reviews}
     //     })
     // }
+
+    
     await listing.findByIdAndDelete(id);
+    req.flash("success","succesful");
     res.redirect("/listing");
 })
 
