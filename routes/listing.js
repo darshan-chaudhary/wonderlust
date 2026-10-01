@@ -24,6 +24,10 @@ route.get("/:id",async(req,res)=>{
     let id=req.params.id;
    
     let x= await listing.findById(id).populate("reviews");
+    if(!x){
+        req.flash("notfound","does not exist");
+        res.redirect("/listing");
+    }
     res.render("listings/show.ejs",{x});
 
 })

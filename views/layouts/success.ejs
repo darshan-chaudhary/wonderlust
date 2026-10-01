@@ -1,5 +1,13 @@
 <% if(success &&success.length){
-    %> <div class="alert alert-success" role="alert">
-      <h3>A simple success alert—check it out!</h3>  
-   </div> <%
+    %> <div class="alert alert-success" id="successAlert"  role="alert">
+      <h3>succesfull</h3>  
+     </div> 
+    <%
 }%> 
+
+<%if(notfound &&notfound.length){
+    %> <div class="alert alert-danger" id="errorAlert" role="alert">
+        <h3>failed to find</h3>
+        </div>
+    <%
+}%>
