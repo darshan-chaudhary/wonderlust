@@ -37,6 +37,7 @@ route.post("/",async(req,res)=>{
     }
     let obj=req.body;
     await listing.create(obj);
+    req.flash("success","new place registerd");
     res.redirect("/listing");
 })
 

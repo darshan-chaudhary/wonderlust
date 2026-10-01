@@ -11,12 +11,19 @@ const ejsmate=require("ejs-mate");
 const {reviewSchema}=require("./public/utils/joiconstrains.js");
 const{listingSchema}=require("./public/utils/listingschemaconstranins.js")
 const listingroutes=require("./routes/listing.js");
+const cookieParser=require("cookie-parser");
 const session=require("express-session");
+const flash=require("connect-flash");
 
      const sessionOption={
          secret:"myhiddenstring",
          resave:false,
-        saveUninitialized:true
+         saveUninitialized:true,
+         cookie :{
+            expires:new Date(Date.now()+1000*60*60*24*3),
+            maxAge:1000*60*60*24*3,
+            httpOnly:true
+         }
      }
      
 app.use(methodOverride("_method"));
@@ -25,7 +32,13 @@ app.engine("ejs",ejsmate);
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,"/public")));
-
+app.use(cookieParser());
+app.use(session(sessionOption));
+app.use(flash());
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    next();
+})
 app.use("/listing",listingroutes);
 
 async function main(){
@@ -39,10 +52,7 @@ main().then((res)=>{
     console.log("somthing wrong in mongo connection");
 })
 
-app.use(session(sessionOption));
-
 app.use((req,res,next)=>{
-    
     res.send("404 - Page Not Found");
 })
 app.listen(port,()=>{
