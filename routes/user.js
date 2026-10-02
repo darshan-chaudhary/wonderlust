@@ -5,15 +5,18 @@ route.get("/signup",(req,res)=>{
     res.render("users/signup.ejs");
 })
 route.post("/register",async(req,res)=>{
-     let {username,email,password}= req.body;
-     const newuser=new user({
-        username,
-        email
+    try{
+       let {username,email,password}= req.body;
+      const newuser=new user({
+         username,
+          email
       })
       const registeruser=await user.register(newuser,password);
       console.log(registeruser);
+    } catch(e){
+        req.flash("error",e.message);
+        res.redirect("/signup")
+    }
       res.redirect("/listing");
-
-
 })
 module.exports=route;
