@@ -11,9 +11,15 @@ const ejsmate=require("ejs-mate");
 const {reviewSchema}=require("./public/utils/joiconstrains.js");
 const{listingSchema}=require("./public/utils/listingschemaconstranins.js")
 const listingroutes=require("./routes/listing.js");
+const userroute=require("./routes/user.js");
 const cookieParser=require("cookie-parser");
 const session=require("express-session");
 const flash=require("connect-flash");
+const passport=require("passport");
+const LocalStrategy=require("passport-local")
+const user=require("./models/user.js");
+
+
 
      const sessionOption={
          secret:"myhiddenstring",
@@ -40,7 +46,22 @@ app.use((req,res,next)=>{
     res.locals.notfound=req.flash("notfound");
     next();
 })
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 app.use("/listing",listingroutes);
+app.use("/",userroute);
+
+// app.get("/register",async (req,res)=>{
+//     let fakeuser=new user({
+//         email:"dcpanwar@gamil.com",   demo user
+//         username:"darshan"
+//     });
+//     let registeruser=await user.register(fakeuser,"dcpanwar");
+//     res.send(registeruser);
+// })
 
 async function main(){
     await mongoose.connect(mongourl);
