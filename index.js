@@ -66,7 +66,7 @@ app.use("/",userroute);
 // })
 
 async function main(){
-    await mongoose.connect(mongourl);
+    await mongoose.connect(mongourl);   
 }
 
 main().then((res)=>{
