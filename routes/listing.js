@@ -17,7 +17,11 @@ route.get("/",async (req,res)=>{
 
 
 route.get("/new",(req,res)=>{
-     console.log("🔥 NEW ROUTE");
+     if(!req.isAuthenticated()){ 
+        req.flash("error","Please logein");
+         console.log("🔥 NEW ROUTE"); 
+       return res.redirect("/listing");
+     }
     res.render("listings/new.ejs");
 })
 route.get("/:id",async(req,res)=>{
