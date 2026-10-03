@@ -33,4 +33,14 @@ route.post("/register",async(req,res)=>{
     req.flash("success","welcome back")
     res.redirect("/listing");
   })
+
+  route.get("/logout",(req,res,next)=>{
+    req.logOut((err)=>{
+      if(err){
+        return next(err);
+      }
+      req.flash("success","YOu are logedout");
+      res.redirect("/listing");
+    })
+  })
 module.exports=route;

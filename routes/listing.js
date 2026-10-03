@@ -5,7 +5,8 @@ const review = require("../models/review.js");
 
 const methodOverride = require("method-override");
 const {reviewSchema}=require("../public/utils/joiconstrains.js");
-const{listingSchema}=require("../public/utils/listingschemaconstranins.js")
+const{listingSchema}=require("../public/utils/listingschemaconstranins.js");
+const { isLogedIn } = require("../middleware.js");
 
 
 route.get("/",async (req,res)=>{
@@ -16,12 +17,8 @@ route.get("/",async (req,res)=>{
 })
 
 
-route.get("/new",(req,res)=>{
-     if(!req.isAuthenticated()){ 
-        req.flash("error","Please logein");
-         console.log("🔥 NEW ROUTE"); 
-       return res.redirect("/listing");
-     }
+route.get("/new",isLogedIn,(req,res)=>{
+   
     res.render("listings/new.ejs");
 })
 route.get("/:id",async(req,res)=>{
@@ -49,7 +46,7 @@ route.post("/",async(req,res)=>{
     res.redirect("/listing");
 })
 
-route.get("/edit/:id",async (req,res)=>{
+route.get("/edit/:id",isLogedIn,async (req,res)=>{
     let id=req.params.id;
     let obj=await listing.findById(id);
     res.render("listings/edit.ejs",{obj});
@@ -59,7 +56,7 @@ route.put("/:id",async(req,res)=>{
     await listing.findByIdAndUpdate(id,req.body);
     res.redirect("/listing");
 })
-route.get("/delete/:id",async(req,res)=>{
+route.get("/delete/:id",isLogedIn,async(req,res)=>{
     let id=req.params.id;
     // let obj =await listing.findById(id);
     // if(obj.reviews.length){                       //we use middleware for it to delete the reviews
@@ -75,7 +72,7 @@ route.get("/delete/:id",async(req,res)=>{
 })
 
 
-route.post("/:id/reviews",async(req,res)=>{
+route.post("/:id/reviews",isLogedIn,async(req,res)=>{
     const {error}=reviewSchema.validate(req.body);
     if(error){
         console.log(error.details);
