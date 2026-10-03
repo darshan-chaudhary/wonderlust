@@ -1,200 +1,186 @@
-
 <!DOCTYPE html>
+
 <html lang="en">
 
-<head>
+<head> <meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<title>Login | Wonderlust</title>
 
-    <title>Login | Wonderlust</title>
+<!-- Bootstrap -->
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
 
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+<style>
 
-    <style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+        background: #f5f5f5;
+    }
 
-        body {
-            min-height: 100vh;
-            margin: 0;
-            background: #f5f5f5;
-        }
+    /* LOGIN CARD */
 
-        /* LOGIN CARD */
+    .login-card {
+        width: 100%;
+        max-width: 450px;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
 
-        .login-card {
-            width: 100%;
-            max-width: 450px;
+    /* TITLE */
 
-            border: none;
-            border-radius: 15px;
+    .login-title {
+        font-weight: 700;
+        text-align: center;
+    }
 
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
+    /* INPUT */
 
-        /* TITLE */
+    .form-control {
+        padding: 12px;
+        border-radius: 8px;
+    }
 
-        .login-title {
-            font-weight: 700;
-            text-align: center;
-        }
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #212529;
+    }
 
-        /* INPUT */
+    /* LOGIN BUTTON */
 
-        .form-control {
-            padding: 12px;
-            border-radius: 8px;
-        }
+    .login-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
 
-        .form-control:focus {
-            box-shadow: none;
-            border-color: #212529;
-        }
+    /* SIGNUP TEXT */
 
-        /* LOGIN BUTTON */
+    .signup-text {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+    }
 
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
+    .signup-text a {
+        text-decoration: none;
+        font-weight: 600;
+        color: #212529;
+    }
 
-        /* SIGNUP TEXT */
+    .signup-text a:hover {
+        text-decoration: underline;
+    }
 
-        .signup-text {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-        }
+    /* ALERT */
 
-        .signup-text a {
-            text-decoration: none;
-            font-weight: 600;
-            color: #212529;
-        }
+    .login-alert {
+        max-width: 450px;
+        margin: 20px auto 0;
+    }
 
-        .signup-text a:hover {
-            text-decoration: underline;
-        }
-
-    </style>
+</style>
 
 </head>
 
-
 <body>
 
-    <!-- NAVBAR -->
+<!-- NAVBAR -->
+<%- include("../layouts/header.ejs") %>
+<%-include("../layouts/alertpopup.ejs")%>
 
-    <%- include("../layouts/header.ejs") %>
+<main class="container py-5">
 
+    <div class="card login-card mx-auto">
 
-    <!-- LOGIN -->
-     <% if (exist && exist.length) { %>
-    <div class="alert alert-danger">
-        <%= exist[0] %>
-    </div>
-     <% } %>
+        <div class="card-body p-4 p-md-5">
 
-    <div class="container py-5">
+            <h2 class="login-title mb-2">
+                Welcome
+            </h2>
 
-        <div class="card login-card mx-auto">
-
-            <div class="card-body p-4 p-md-5">
-
-                <h2 class="login-title mb-2">
-                    Welcome 
-                </h2>
-
-                <p class="text-center text-muted mb-4">
-                    Login to continue to Wonderlust
-                </p>
+            <p class="text-center text-muted mb-4">
+                Login to continue to Wonderlust
+            </p>
 
 
-                <form action="/loginuser" method="POST">
+            <form action="/loginuser" method="POST">
 
-                    <!-- USERNAME -->
+                <!-- USERNAME -->
 
-                    <div class="mb-3">
+                <div class="mb-3">
 
-                        <label
-                            for="username"
-                            class="form-label"
-                        >
-                            Username
-                        </label>
-
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="username"
-                            name="username"
-                            placeholder="Enter username"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- PASSWORD -->
-
-                    <div class="mb-3">
-
-                        <label
-                            for="password"
-                            class="form-label"
-                        >
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            name="password"
-                            placeholder="Enter password"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- REMEMBER ME -->
-
-                  
-
-
-                    <!-- LOGIN BUTTON -->
-
-                    <button
-                        type="submit"
-                        class="btn btn-dark login-btn"
+                    <label
+                        for="username"
+                        class="form-label"
                     >
-                        Login
-                    </button>
+                        Username
+                    </label>
 
-                </form>
-
-
-                <!-- SIGNUP -->
-
-                <div class="signup-text">
-
-                    Don't have an account?
-
-                    <a href="/signup">
-                        Create Account
-                    </a>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required
+                    >
 
                 </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="mb-3">
+
+                    <label
+                        for="password"
+                        class="form-label"
+                    >
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="btn btn-dark login-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <!-- SIGNUP -->
+
+            <div class="signup-text">
+
+                Don't have an account?
+
+                <a href="/signup">
+                    Create Account
+                </a>
 
             </div>
 
@@ -202,7 +188,7 @@
 
     </div>
 
+</main>
 
 </body>
-
 </html>
