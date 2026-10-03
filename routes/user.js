@@ -1,6 +1,7 @@
 const express=require("express");
 const passport=require("passport");
 const route=express.Router();
+const { isLogedIn, savedRedirectUrl } = require("../middleware.js");
 const user=require("../models/user.js");
 route.get("/signup",(req,res)=>{
     res.render("users/signup.ejs");
@@ -35,17 +36,25 @@ route.post("/register", async (req, res, next) => {
 });
 
   route.get("/login",(req,res)=>{
+    console.log("LOGIN PAGE:", req.session.redirectUrl);
     res.render("users/login.ejs");
   })
 
-  route.post("/loginuser",
-    passport.authenticate("local",
-    {failureRedirect:"/login",
-     failureFlash:true,
-    }),async(req,res)=>{
-    req.flash("success","welcome back")
-    res.redirect("/listing");
-  })
+   route.post("/loginuser",savedRedirectUrl,
+    passport.authenticate("local", {
+        failureRedirect: "/login",
+        failureFlash: true
+    }),(req, res) => {
+
+        //console.log("AFTER PASSPORT:", req.session.redirectUrl);
+        // let redirectUrl = req.session.redirectUrl || "/listing"; passport authinatication values ko reset karr dega iss liye req.locals ka use karenge yaha 
+        //delete req.session.redirectUrl;
+  
+        req.flash("success", "Welcome back");
+
+         res.redirect(res.locals.redirectUrl);
+    }
+);
 
   route.get("/logout",(req,res,next)=>{
     req.logOut((err)=>{
