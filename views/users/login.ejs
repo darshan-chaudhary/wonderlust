@@ -24,13 +24,12 @@
 
     /* LOGIN CARD */
 
-    .login-card {
-        width: 100%;
-        max-width: 450px;
-        border: none;
-        border-radius: 15px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    }
+   .login-card .login-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
 
     /* TITLE */
 
@@ -53,12 +52,7 @@
 
     /* LOGIN BUTTON */
 
-    .login-btn {
-        width: 100%;
-        padding: 12px;
-        border-radius: 8px;
-        font-weight: 600;
-    }
+   
 
     /* SIGNUP TEXT */
 
@@ -95,7 +89,7 @@
 <%- include("../layouts/header.ejs") %>
 <%-include("../layouts/alertpopup.ejs")%>
 
-<main class="container py-5">
+<main class="container py-4 col-6">
 
     <div class="card login-card mx-auto">
 
