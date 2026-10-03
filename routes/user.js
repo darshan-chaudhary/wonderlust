@@ -5,21 +5,34 @@ const user=require("../models/user.js");
 route.get("/signup",(req,res)=>{
     res.render("users/signup.ejs");
 })
-route.post("/register",async(req,res)=>{
-    try{
-       let {username,email,password}= req.body;
-      const newuser=new user({
-         username,
-          email
-      })
-      const registeruser=await user.register(newuser,password);
-      console.log(registeruser);
-    } catch(e){
-        req.flash("error",e.message);
-        res.redirect("/signup")
+route.post("/register", async (req, res, next) => {
+    try {
+        let { username, email, password } = req.body;
+
+        const newuser = new user({
+            username,
+            email
+        });
+
+        const registeruser = await user.register(newuser, password);
+
+        req.login(registeruser, (err) => {
+            if (err) {
+                return next(err);
+            }
+
+            req.flash("success", "Welcome to wonderland");
+            return res.redirect("/listing");  // ✅ redirect yahi
+        });
+
+        console.log(registeruser);
+
+    } catch (e) {
+        req.flash("error", e.message);
+        return res.redirect("/signup");
     }
-      res.redirect("/listing");
-})
+
+});
 
   route.get("/login",(req,res)=>{
     res.render("users/login.ejs");
