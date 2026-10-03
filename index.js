@@ -41,20 +41,21 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.use(cookieParser());
 app.use(session(sessionOption));
 app.use(flash());
-
-app.use((req,res,next)=>{
-    res.locals.success=req.flash("success");
-    res.locals.notfound=req.flash("notfound");
-    res.locals.exist=req.flash("error");
-    next();
-})
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.notfound=req.flash("notfound");
+    res.locals.exist=req.flash("error");
+    res.locals.currentUser=req.user;
+    next();
+})
 app.use("/listing",listingroutes);
 app.use("/",userroute);
+
 
 // app.get("/register",async (req,res)=>{
 //     let fakeuser=new user({

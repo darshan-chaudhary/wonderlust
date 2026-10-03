@@ -69,13 +69,16 @@
                     >
                         + List your place
                     </a>
-
-                    <a
-                        href="/login"
-                        class="btn btn-dark login-btn"
-                    >
-                        Login
-                    </a>
+                     
+                    <% if(!currentUser){%> 
+                        <a href="/login"class="btn btn-dark login-btn">Login / register</a>
+                    <%}%>
+                    
+                     <% if(currentUser){%> 
+                        <a href="/logout"class="btn btn-dark login-btn">logout</a>
+                    <%}%>
+                    
+                  
 
                 </div>
 
